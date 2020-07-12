@@ -11,9 +11,11 @@ for x in range(100):
     if x % 10:
         print("Coding Dojo")
 # Whoa. That Sucker's Huge - Add odd integers from 0 to 500,000, and print the final sum.
-for x in range(0, 15, 3):
-    sum = x + sum
+sum = 0
+for num in range(1, 500000, 2):
+    sum += num
     print(sum)
+
 # Countdown by Fours - Print positive numbers starting at 2018, counting down by fours.
 for x in range(2018, 0, -4):
     print(x)
@@ -22,5 +24,6 @@ for x in range(2018, 0, -4):
 lowNum = 2
 highNum = 9
 mult = 3
-for x in range(3, 11, 3):
-    print(x)
+for x in range(lowNum, highNum + 1):
+    if x % mult == 0:
+        print(x)
