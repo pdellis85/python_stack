@@ -14,24 +14,23 @@ Collecting MarkupSafe>=0.23
 Installing collected packages: itsdangerous, click, MarkupSafe, Jinja2, Werkzeug, flask
 Successfully installed Jinja2-2.11.2 MarkupSafe-1.1.1 Werkzeug-1.0.1 click-7.1.2 flask-1.1.2 itsdangerous-1.1.0
 (py3Env) porsheaellis$ pip list
-Package      Version
------------- -------
-asgiref      3.2.10
-click        7.1.2
-Django       3.0.8
-Flask        1.1.2
+Package Version
+
+---
+
+asgiref 3.2.10
+click 7.1.2
+Django 3.0.8
+Flask 1.1.2
 itsdangerous 1.1.0
-Jinja2       2.11.2
-MarkupSafe   1.1.1
-pip          20.1.1
-pytz         2020.1
-setuptools   41.2.0
-sqlparse     0.3.1
-Werkzeug     1.0.1
-(py3Env) porsheaellis$ 
-
-
-
+Jinja2 2.11.2
+MarkupSafe 1.1.1
+pip 20.1.1
+pytz 2020.1
+setuptools 41.2.0
+sqlparse 0.3.1
+Werkzeug 1.0.1
+(py3Env) porsheaellis\$
 
 porsheaellis$ pip3 install flask
 Collecting flask
@@ -45,21 +44,27 @@ Installing collected packages: flask
 Successfully installed flask-1.1.2
 porsheaellis$ pip list
 -bash: pip: command not found
-porsheaellis$ pip3 list
-Package      Version
------------- -------
-asgiref      3.2.10 
-click        7.1.2  
-Flask        1.1.2  
-itsdangerous 1.1.0  
-Jinja2       2.11.2 
-MarkupSafe   1.1.1  
-pip          20.0.2 
-protobuf     3.12.3 
-pytz         2020.1 
-setuptools   46.0.0 
-six          1.15.0 
-sqlparse     0.3.1  
-Werkzeug     1.0.1  
-wheel        0.34.2 
-porsheaellis$ 
+porsheaellis\$ pip3 list
+Package Version
+
+---
+
+asgiref 3.2.10
+click 7.1.2
+Flask 1.1.2
+itsdangerous 1.1.0
+Jinja2 2.11.2
+MarkupSafe 1.1.1
+pip 20.0.2
+protobuf 3.12.3
+pytz 2020.1
+setuptools 46.0.0
+six 1.15.0
+sqlparse 0.3.1
+Werkzeug 1.0.1
+wheel 0.34.2
+porsheaellis\$
+
+Virtual Enviroment: /Users/porsheaellis/Desktop/python_stack/my_enviroments/py3Env/bin/flask
+
+Non-Virtual Enviroment: /usr/local/bin/flask
