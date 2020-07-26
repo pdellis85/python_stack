@@ -30,3 +30,26 @@ def length(nums_list):
     return z
 
 print(length([1,2,3,4,5]))
+
+
+# 4 Values Greater than Second
+
+def val_sec(numList):
+  newList=[]
+  x = (numList[1])
+  for y in range(len(numList)):
+    if numList[y] > x:
+      newList.append(numList[y])
+  print(len(newList))
+  return newList
+print(val_sec([5,2,3,2,1,4]))
+
+# 5 This Length, That Value
+
+def length_and_value(size, value):
+    new_list = []
+    for y in range(size):
+        new_list.append(value)
+    return new_list
+
+print(length_and_value(4,7))
