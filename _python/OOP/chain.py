@@ -1,41 +1,42 @@
 class User:
-    def __init__(self, name, email):
+    def __init__(self, name, state):
         self.name = name
-        self.email = email
-        self.account_balance = 0
+        self.state = state
+        self.account_balance = 500
 
     def make_deposit(self, amount):
         self.account_balance += amount
         return self
 
-    def make_withdrawal(self, amount):
+    def make_withdraw(self, amount):
         self.account_balance -= amount
         return self
 
     def display_user_balance(self):
-        print("User: " + self.name, "Balance: $" + str(self.account_balance))
+        print("User: " + self.name,  "has a Balance of $" +
+              str(self.account_balance))
         return self
 
-    def transfer_money(self, other_user, amount):
+    def transer_money(self, other_user, amount):
         other_user.make_deposit(amount)
-        self.make_withdrawal(amount)
+        self.make_withdraw(amount)
         return self
 
 
-rash = User("Rashaud", "rash@rash.com")
-porshea = User("Porshea", "porsh@porsh.com")
-kathy = User("Kathy", "kat@kat.com")
-
-porshea.make_deposit(100).make_deposit(100).make_deposit(
-    100).make_withdrawal(50).display_user_balance()
+rash = User("Rashaud", "Texas")
+porsh = User("Porshea", "Washington")
+kat = User("Kathy", "California")
 
 
-rash.make_deposit(50).make_deposit(1000).make_withdrawal(
-    500).make_withdrawal(100).display_user_balance()
+rash.make_deposit(20).make_deposit(25).make_deposit(
+    40).make_withdraw(120).display_user_balance()
 
-kathy.make_deposit(100).make_withdrawal(25).make_withdrawal(
-    25).make_withdrawal(25).display_user_balance()
+porsh.make_deposit(200).make_deposit(100).make_withdraw(
+    20).make_withdraw(20).display_user_balance()
 
-# BONUS
-rash.transfer_money(kathy, 250).display_user_balance()
-kathy.display_user_balance()
+kat.make_deposit(220).make_withdraw(20).make_withdraw(
+    20).make_withdraw(20).display_user_balance()
+
+# bonus
+rash.transer_money(kat, 100).display_user_balance()
+kat.display_user_balance()
