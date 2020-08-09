@@ -20,8 +20,8 @@ class BankAccount:
         return self
 
     def yield_interest(self):
-        if self.account_balance > 0:
-            self.account_balance = self.account_balance + self.account_balance * self.rate
+        amount_earned = self.acctount_balance * self.int_rate
+        self.account_balance += amount_earned
         return self
 
 
@@ -34,5 +34,5 @@ class User:
 rash = User("Rash")
 porsh = User("Porshea")
 
-rash.accounts.make_deposit(100).yield_interest().display_account_info()
-porsh.accounts.make_withdraw(700).yield_interest().display_account_info()
+rash.accounts.make_deposit(100).display_account_info()
+porsh.accounts.make_withdraw(800).display_account_info()
