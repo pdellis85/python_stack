@@ -1,6 +1,3 @@
-
-
-
 class BankAccount:
     def __init__(self, rate, balance):
         self.rate = rate
