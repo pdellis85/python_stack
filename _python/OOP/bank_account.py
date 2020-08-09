@@ -29,6 +29,7 @@ class User:
     def __init__(self, name):
         self.name = name
         self.accounts = BankAccount(.05, 500)
+        
 
 
 rash = User("Rash")
