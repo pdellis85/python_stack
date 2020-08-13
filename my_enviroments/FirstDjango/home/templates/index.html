@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Django</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+</head>
+
+<body>
+    <h1>Welcome to Django!!</h1>
+    <h1>Red Team Go!!</h1>
+
+    <nav>
+        <a href="/contact">Contacts</a>
+        <a href="/about">About me!</a>
+    </nav>
+    <h2>Colors</h2>
+    <ul>
+        {% for color in colors %}
+        <li><a href="/colors/{{color}}">{{ color }}</a></li>
+        {% endfor %}
+</body>
+
+</html>

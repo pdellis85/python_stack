@@ -4,7 +4,10 @@ from django.shortcuts import render, HttpResponse
 
 
 def index(request):
-    return HttpResponse("Hello World")
+    context = {
+        "colors": ['red', 'blue', 'green', 'hacker-green']
+    }
+    return render(request,'index.html', context)
 
 
 def contact(request):
