@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dojo Survey Index</title>
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'style.css' %}" />
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dojo Survey Index</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css'%}">
-</head>
+	<body>
+		<div id="wrapper">
+			<h2>Submitted Info</h2>
 
-<body>
-    <div class="wrapper">
-        <h2>Submitted Info</h2>
+			<h3>Name: {{request.session.name}}</h3>
+			<p></p>
+			<h3>Dojo Location: {{request.session.city}}</h3>
+			<p></p>
+			<h3>Fav Language: {{request.session.lang}}</h3>
+			<p></p>
+			<h3>Comment: {{request.session.comms}}</h3>
 
-
-        <h3>Name: {{request.session.name}} </h3>
-        <p></p>
-        <h3>Dojo Location: {{request.session.city}}</h3>
-        <p></p>
-        <h3>Fav Language: {{request.session.lang}}</h3>
-        <p></p>
-        <h3>Comment: {{request.session.comms}}</h3>
-
-        <p></p>
-        <input type="button" value="Go Back">
-    </div>
-</body>
-
+			<p></p>
+			<input type="button" value="Go Back" />
+		</div>
+	</body>
 </html>
