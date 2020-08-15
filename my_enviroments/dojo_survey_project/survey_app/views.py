@@ -7,3 +7,8 @@ def index(request):
 
 def result(request):
     return render(request, 'result.html')
+
+def create(request):
+    request.session['name'] = request.POST['fname']
+    request.session['city'] = request.POST['location']
+    return redirect('/')
