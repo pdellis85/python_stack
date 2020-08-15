@@ -1,0 +1,18 @@
+.wrapper{
+   border: 5px solid black;
+   margin: auto;
+   width: 35%;
+   padding: 10px;
+   
+}
+
+h2{
+   color: blue;
+   font-weight: bold;
+   text-decoration: underline;
+}
+
+h3{
+   color: rebeccapurple;
+   text-indent: 40px;
+}
