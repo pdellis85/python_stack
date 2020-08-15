@@ -11,4 +11,7 @@ def result(request):
 def create(request):
     request.session['name'] = request.POST['fname']
     request.session['city'] = request.POST['location']
+    request.session['lang'] = request.POST['language']
+    request.session['comms'] = request.POST['comment']
     return redirect('/')
+
