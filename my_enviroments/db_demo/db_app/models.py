@@ -18,7 +18,8 @@ class User(models.Model):
 
 class Message_Post(models.Model):
     content = models.CharField(max_length=255)
-    poster = models.ForeignKey(User, related_name=)
+    poster = models.ForeignKey(User, related_name='posts', on_delete=models.CASCADE)
+    user_who_liked = models.ManyToManyField(User, related_name='liked_post')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -26,8 +27,3 @@ class Message_Post(models.Model):
 #       -  Users should have the ability to 'like' a Message_post
 
 
-class Like(models.Model):
-    username = models.CharField(max_length=255)
-    password = models.CharField(max_length=255)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
