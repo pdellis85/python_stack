@@ -45,17 +45,80 @@ Running migrations:
 
 
  <!-- Query: Create 5 books with the following names: C Sharp, Java, Python, PHP, Ruby   -->
+ >>> Book.objects.create(title="C Sharp", desc="programming")
+<Book: Book object (1)>
+>>> Book.objects.create(title="Java", desc="programming")
+<Book: Book object (2)>
+>>> Book.objects.create(title="Python", desc="programming")
+<Book: Book object (3)>
+>>> Book.objects.create(title="PHP", desc="programming")
+<Book: Book object (4)>
+>>> Book.objects.create(title="Ruby", desc="programming")
+<Book: Book object (5)>
+
+ <!-- Query: Create 5 different authors: Jane Austen, Emily Dickinson, Fyodor Dostoevksy, William Shakespeare, Lau Tzu  -->
+
+>>> Author.objects.create(first_name="Jane", last_name="Austen")
+<Author: Author object (1)>
+>>> Author.objects.create(first_name="Emily", last_name="Dickinson")
+<Author: Author object (2)>
+>>> Author.objects.create(first_name="Fyodor", last_name="Dostoevksy")
+<Author: Author object (3)>
+>>> Author.objects.create(first_name="William", last_name="Shakespeare")
+<Author: Author object (4)>
+>>> Author.objects.create(first_name="Lau", last_name="Tzu")
+<Author: Author object (5)>
+
+ <!-- Add a new text field in the authors table called 'notes'.  -->
+class Author(models.Model):
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    note = models.CharField(max_length=255)
+    book_by_author = models.ManyToManyField(Book, related_name='author_book')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+ <!-- Create and run the migration files to update the table in your database.  -->
+(django2) MacBook-Pro:book_authors_project porsheaellis$  python manage.py makemigrations
+You are trying to add a non-nullable field 'note' to author without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> "old books"
+Migrations for 'books_authors_app':
+  books_authors_app/migrations/0002_author_note.py
+    - Add field note to author
+(django2) MacBook-Pro:book_authors_project porsheaellis$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, books_authors_app, contenttypes, sessions
+Running migrations:
+  Applying books_authors_app.0002_author_note... OK
+(django2) MacBook-Pro:book_authors_project porsheaellis$ 
+
+ <!-- Query: Change the name of the C Sharp book to C#   -->
+>>> change = Book.objects.get(id=1)
+>>> change
+<Book: Book object (1)>
+>>> change.title
+'C Sharp'
+>>> change.title ="C#"
+>>> change.save()
+>>> change.title
+'C#'
+
+ <!-- Query: Change the first name of the 4th author to Bill   -->
  
- Query: Create 5 different authors: Jane Austen, Emily Dickinson, Fyodor Dostoevksy, William Shakespeare, Lau Tzu  
-
- Add a new text field in the authors table called 'notes'. 
-
- Create and run the migration files to update the table in your database. 
-
- Query: Change the name of the C Sharp book to C#  
-
- Query: Change the first name of the 4th author to Bill  
-
+>>> name_change = Author.objects.get(id=4)
+>>> name_change.first_name
+'William'
+>>> name_change.first_name ="Bill"
+>>> name_change.save()
+>>> name_change.first_name
+'Bill'
  Query: Assign the first author to the first 2 books 
 
  Query: Assign the second author to the first 3 books  
