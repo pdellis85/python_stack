@@ -40,12 +40,43 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 
 <!-- Query: Create 3 new dojos   -->
+>>> Dojo.objects.create(name="Porshea", city="Dallas", state="TX")
+<Dojo: Dojo object (1)>
+>>> Dojo.objects.create(name="Summer", city="Dallas", state="TX")
+<Dojo: Dojo object (2)>
+>>> Dojo.objects.create(name="Rashaud", city="San Jose", state="CA")
+
 <!-- Query: Delete the 3 dojos you just created   -->
+>>> d=Dojo.objects.get(id=1)
+>>> d.delete()
+(1, {'dojo_ninjas_app.Ninja': 0, 'dojo_ninjas_app.Dojo': 1})
+>>> d=Dojo.objects.get(id=2)
+>>> d.delete()
+(1, {'dojo_ninjas_app.Ninja': 0, 'dojo_ninjas_app.Dojo': 1})
+>>> d=Dojo.objects.get(id=3)
+>>> d.delete()
+(1, {'dojo_ninjas_app.Ninja': 0, 'dojo_ninjas_app.Dojo': 1})
+
 <!-- Query: Create 3 more dojos   -->
+>>> Dojo.objects.create(name="San Jose", city="San Jose", state="CA")
+<Dojo: Dojo object (4)>
+>>> Dojo.objects.create(name="Dallas", city="Dallas", state="TX")
+<Dojo: Dojo object (5)>
+>>> Dojo.objects.create(name="Oakland", city="Oakland", state="CA")
+<Dojo: Dojo object (6)>
+
 <!-- Query: Create 3 ninjas that belong to the first dojo   -->
+
 <!-- Query: Create 3 ninjas that belong to the second dojo   -->
-Query: Create 3 ninjas that belong to the third dojo  
-Query: Retrieve all the ninjas from the first dojo  
-Query: Retrieve all the ninjas from the last dojo  
-Query: Retrieve the last ninja's dojo  Add a new text field called "desc" to your Dojo class  Create and run the migration files to update the table in your database. If needed, provide a default value of "old dojo"  
-Query: Create a new dojo
+
+<!-- Query: Create 3 ninjas that belong to the third dojo   -->
+
+<!-- Query: Retrieve all the ninjas from the first dojo   -->
+
+<!-- Query: Retrieve all the ninjas from the last dojo   -->
+
+<!-- Query: Retrieve the last ninja's dojo   -->
+
+<!-- Add a new text field called "desc" to your Dojo class   -->
+<!-- Create and run the migration files to update the table in your database. If needed, provide a default value of "old dojo"   -->
+<!-- Query: Create a new dojo -->
