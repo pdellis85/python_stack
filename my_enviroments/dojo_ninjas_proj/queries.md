@@ -66,17 +66,87 @@ Type "help", "copyright", "credits" or "license" for more information.
 <Dojo: Dojo object (6)>
 
 <!-- Query: Create 3 ninjas that belong to the first dojo   -->
-
+>>> Ninja.objects.create(first_name="Porshea", last_name="Ellis", dojo_id=Dojo.objects.get(id=4))
+<Ninja: Ninja object (1)>
+>>> Ninja.objects.create(first_name="Rashud", last_name="Ellis", dojo_id=Dojo.objects.get(id=4))
+<Ninja: Ninja object (2)>
+>>> Ninja.objects.create(first_name="Elijah", last_name="Ellis", dojo_id=Dojo.objects.get(id=4))
+<Ninja: Ninja object (3)>
+>>> 
 <!-- Query: Create 3 ninjas that belong to the second dojo   -->
-
+>>> Ninja.objects.create(first_name="Kathy", last_name="Curry", dojo_id=Dojo.objects.get(id=5))
+<Ninja: Ninja object (4)>
+>>> Ninja.objects.create(first_name="Gail", last_name="Curry", dojo_id=Dojo.objects.get(id=5))
+<Ninja: Ninja object (5)>
+>>> Ninja.objects.create(first_name="Ava-Grace", last_name="Curry", dojo_id=Dojo.objects.get(id=5))
+<Ninja: Ninja object (6)>
 <!-- Query: Create 3 ninjas that belong to the third dojo   -->
-
+>>> Ninja.objects.create(first_name="Thomas", last_name="Curry", dojo_id=Dojo.objects.get(id=6))
+<Ninja: Ninja object (7)>
+>>> Ninja.objects.create(first_name="Jude", last_name="Curry", dojo_id=Dojo.objects.get(id=6))
+<Ninja: Ninja object (8)>
+>>> Ninja.objects.create(first_name="Bob", last_name="Curry", dojo_id=Dojo.objects.get(id=6))
+<Ninja: Ninja object (9)>
 <!-- Query: Retrieve all the ninjas from the first dojo   -->
-
+'Porshea'
+'Ellis'
+<Dojo: Dojo object (4)>
+'Rashud'
+'Ellis'
+<Dojo: Dojo object (4)>
+'Elijah'
+'Ellis'
+<Dojo: Dojo object (4)>
 <!-- Query: Retrieve all the ninjas from the last dojo   -->
-
+'Thomas'
+'Curry'
+<Dojo: Dojo object (6)>
+'Jude'
+'Curry'
+<Dojo: Dojo object (6)>
+'Bob'
+'Curry'
+<Dojo: Dojo object (6)>
+>>> 
 <!-- Query: Retrieve the last ninja's dojo   -->
-
+>>> end.ninjas.last()
+<Ninja: Ninja object (9)>
+>>> end_peep = end.ninjas.last()
+>>> end_peep
+<Ninja: Ninja object (9)>
+>>> end_peep.first_name
+'Bob'
+>>> end_peep.last_name
+'Curry'
 <!-- Add a new text field called "desc" to your Dojo class   -->
+class Dojo(models.Model):
+    name = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    state = models.CharField(max_length=255)
+    desc = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
 <!-- Create and run the migration files to update the table in your database. If needed, provide a default value of "old dojo"   -->
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> "old dojo"
+Migrations for 'dojo_ninjas_app':
+  dojo_ninjas_app/migrations/0003_dojo_desc.py
+    - Add field desc to dojo
+(django2) MacBook-Pro:dojo_ninjas_proj porsheaellis$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojo_ninjas_app, sessions
+Running migrations:
+  Applying dojo_ninjas_app.0003_dojo_desc... OK
+(django2) MacBook-Pro:dojo_ninjas_proj porsheaellis$ 
+
+
 <!-- Query: Create a new dojo -->
+
+>>> Dojo.objects.create(name="Arlington", city="Arlington", state="TX", desc="old dojo")
+<Dojo: Dojo object (7)>
