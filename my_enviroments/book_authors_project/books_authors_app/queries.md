@@ -119,22 +119,108 @@ Running migrations:
 >>> name_change.save()
 >>> name_change.first_name
 'Bill'
- Query: Assign the first author to the first 2 books 
 
- Query: Assign the second author to the first 3 books  
+ <!-- Query: Assign the first author to the first 2 books  -->
+>>> this_book = Book.objects.get(id=1)
+>>> this_author = Author.objects.get(id=1)
+>>> this_author.book_by_author.add(this_book)
+>>> this_book = Book.objects.get(id=2)
+>>> this_author = Author.objects.get(id=1)
+>>> this_author.book_by_author.add(this_book)
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>]>
 
- Query: Assign the third author to the first 4 books 
+ <!-- Query: Assign the second author to the first 3 books   -->
+>>> this_book = Book.objects.get(id=1)
+>>> this_author = Author.objects.get(id=2)
+>>> this_author.book_by_author.add(this_book)
+>>> this_book = Book.objects.get(id=2)
+>>> this_author = Author.objects.get(id=2)
+>>> this_author.book_by_author.add(this_book)
+>>> this_book = Book.objects.get(id=3)
+>>> this_author = Author.objects.get(id=2)
+>>> this_author.book_by_author.add(this_book)
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>]>
 
- Query: Assign the fourth author to the first 5 books (or in other words, all the books) 
+ <!-- Query: Assign the third author to the first 4 books  -->
+>>> this_book = Book.objects.get(id=1)
+>>> this_author = Author.objects.get(id=3)
+>>> this_author.book_by_author.add(this_book)
+>>> this_book = Book.objects.get(id=2)
+>>> this_author = Author.objects.get(id=3)
+>>> this_author.book_by_author.add(this_book)
+>>> this_book = Book.objects.get(id=3)
+>>> this_author = Author.objects.get(id=3)
+>>> this_author.book_by_author.add(this_book)
+>>> this_book = Book.objects.get(id=4)
+>>> this_author = Author.objects.get(id=3)
+>>> this_author.book_by_author.add(this_book)
+>>> this_author.book_by_author.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>]>
 
- Query: Retrieve all the authors for the 3rd book  
+ <!-- Query: Assign the fourth author to the first 5 books (or in other words, all the books)  -->
+>>> this_book = Book.objects.get(id=1)
+>>> this_author = Author.objects.get(id=4)
+>>> this_author.book_by_author.add(this_book)
+>>> this_book = Book.objects.get(id=2)
+>>> this_author = Author.objects.get(id=4)
+>>> this_author.book_by_author.add(this_book)
+>>> this_book = Book.objects.get(id=3)
+>>> this_author = Author.objects.get(id=4)
+>>> this_author.book_by_author.add(this_book)
+>>> this_book = Book.objects.get(id=4)
+>>> this_author = Author.objects.get(id=4)
+>>> this_author.book_by_author.add(this_book)
+>>> this_book = Book.objects.get(id=5)
+>>> this_author = Author.objects.get(id=4)
+>>> this_author.book_by_author.add(this_book)
+>>> this_author.book_by_author.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>, <Book: Book object (5)>]>
 
- Query: Remove the first author of the 3rd book  
+ <!-- Query: Retrieve all the authors for the 3rd book   -->
+>>> this_book = Book.objects.get(id=3)
+>>> for book in this_book.author_book.all():
+...     book.first_name
+...     book.last_name
+... 
+'Emily'
+'Dickinson'
+'Fyodor'
+'Dostoevksy'
+'Bill'
+'Shakespeare'
+>>> for book in this_book.author_book.all():
+...     book.book_by_author
+... 
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x10f586be0>
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x10f4fe760>
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x10f586be0>
 
- Query: Add the 5th author as one of the authors of the 2nd book 
+ <!-- Query: Remove the first author of the 3rd book   -->
+ >>> this_book = Book.objects.get(id=3)
+>>> this_author = Author.objects.get(id=1)
+>>> this_author.book_by_author.remove(this_book)
+ >>> this_book
+<Book: Book object (3)>
+>>> this_author
+<Author: Author object (1)>
+>>> this_book.author_book.all()
+<QuerySet [<Author: Author object (2)>, <Author: Author object (3)>, <Author: Author object (4)>]>
+>>> 
 
- Query: Find all the books that the 3rd author is part of  
+ <!-- Query: Add the 5th author as one of the authors of the 2nd book  -->
+>>> this_book = Book.objects.get(id=2)
+>>> this_author = Author.objects.get(id=5)
+>>> this_author.book_by_author.add(this_book)
+>>> this_book.author_book.all()
+<QuerySet [<Author: Author object (1)>, <Author: Author object (2)>, <Author: Author object (3)>, <Author: Author object (4)>, <Author: Author object (5)>]>
 
- Query: Find all the authors that contributed to the 5th book  
+ <!-- Query: Find all the books that the 3rd author is part of   -->
 
- Submit your .txt file that contains all the queries you ran in the shell
+>>> this_author = Author.objects.get(id=3)
+>>> this_author.book_by_author.all()
+<QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>]>
+
+ <!-- Query: Find all the authors that contributed to the 5th book   -->
+>>> this_book = Book.objects.get(id=5)
+>>> this_book.author_book.all()
+<QuerySet [<Author: Author object (4)>]>
