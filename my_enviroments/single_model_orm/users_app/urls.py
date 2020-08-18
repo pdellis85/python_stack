@@ -19,5 +19,6 @@ from . import views
 
 urlpatterns = [
     path('', views.root),
+    path('create', views.create)
 
 ]
