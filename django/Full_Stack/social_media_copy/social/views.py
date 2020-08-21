@@ -58,12 +58,12 @@ def login(request):
             # storing User Object instead of Queryset containing user
             logged_user = logged_user[0]
             # does their submitted password match our password in the DB?
-            if bcrypt.checkpw(request.POST['password'].encode(), logged_user.password.encode():
+            if bcrypt.checkpw(request.POST['password'].encode(), logged_user.password.encode()):
                 # storing user data in session
-                request.session['name']=logged_user.first_name
-                request.session['user_id']=logged_user.id
+                request.session['name'] = logged_user.first_name
+                request.session['user_id'] = logged_user.id
                 # routing to success page
-                return redirect('/success')
+            return redirect('/success')
     # this wasn't a post request, let's redirect home
     return redirect('/')
 
