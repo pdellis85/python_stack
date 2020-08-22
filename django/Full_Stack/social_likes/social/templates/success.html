@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Message Wall</title>
+		{% load static %}
+		<link rel="stylesheet" href="{% static 'style.css' %}" />
+	</head>
+
+	<body>
+		<div id="wrapper">
+			<div id="header">
+				<h1>Congrats! Welcome to {{request.session.name}}'s message wall!</h1>
+				<h2>Post a Message:</h2>
+				<form action="/create_message" method="POST">
+					{%csrf_token%}
+					<input type="text" name="content" />
+					<input type="submit" value="Post" />
+				</form>
+
+				<div id="messages">
+					{% for one_mess in all_messages %}
+					<div class="message">
+						<h6>
+							{{one_mess.poster.first_name}} {{one_mess.poster.last_name}}
+						</h6>
+						<p>{{one_mess.content}}</p>
+						<p>{{one_mess.created_at}}</p>
+					</div>
+					{%endfor%}
+				</div>
+				<a href="/logout">logout</a>
+			</div>
+		</div>
+	</body>
+</html>
