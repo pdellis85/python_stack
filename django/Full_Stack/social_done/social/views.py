@@ -12,8 +12,10 @@ def index(request):
 
 
 def success(request):
-
-    return render(request, 'success.html')
+    context = {
+        'all_messages' : Wall_Message.objects.all()
+    }
+    return render(request, 'success.html', context)
 
 ## USER routes ##
 
@@ -25,7 +27,7 @@ def register(request):
     if request.method == 'POST':
         # if it is, let's validate our data
         errors = User.objects.validator(request.POST)
-        print(errors)
+
         # if there were errors
         if len(errors) > 0:
             # compile those errors into the messages object
@@ -38,7 +40,6 @@ def register(request):
             request.POST['password'].encode(), bcrypt.gensalt()).decode()
         new_user = User.objects.create(
             first_name=request.POST['f_name'], last_name=request.POST['l_name'], email=request.POST['email'], password=pw_hash)
-        print(new_user.password)
         request.session['name'] = new_user.first_name
         request.session['user_id'] = new_user.id
         # redirect to success route
@@ -70,4 +71,24 @@ def login(request):
 
 def logout(request):
     request.session.flush()
+    return redirect('/')
+
+# add a message
+
+
+def add_message(request):
+    # make sure this is a POST request
+    if request.method == 'POST':
+        # validate our messessage
+        errors = Wall_Message.objects.validator(request.POST)
+        # if we have erros
+        if errors:
+          # compile those errors into the messages object
+            for key, values in errors.items():
+                messages.error(request, values)
+            return redirect('/success')
+        # create the message
+        new_mess = Wall_Message.objects.create(
+            content=request.POST['content'], poster=User.objects.get(id=request.session['user_id']))
+        return redirect('/success')
     return redirect('/')

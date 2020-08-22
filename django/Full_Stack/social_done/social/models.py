@@ -1,10 +1,12 @@
 from django.db import models
 import re
 
+
 class UserManager(models.Manager):
     def validator(self, postData):
         errors = {}
-        EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+        EMAIL_REGEX = re.compile(
+            r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         if len(postData['f_name']) < 2:
             errors['first_name'] = "Your first name must be more than 2 characters!!"
         if len(postData['l_name']) < 2:
@@ -17,6 +19,7 @@ class UserManager(models.Manager):
             errors['conf_password'] = "Password and confirm password do not match!!"
         return errors
 
+
 class User(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -26,3 +29,19 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
 
+
+class MessageManager(models.Manager):
+    def validator(self, form):
+        errors = {}
+        if len(form['content']) < 5:
+            errors['length'] = "Message must be at least 5 characters!!"
+        return errors
+
+
+class Wall_Message(models.Model):
+    content = models.CharField(max_length=255)
+    poster = models.ForeignKey(
+        User, related_name="messages", on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    objects = MessageManager()
