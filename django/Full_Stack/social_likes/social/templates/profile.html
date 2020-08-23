@@ -15,5 +15,12 @@
 			<li>{{one_mess.content}}</li>
 			{%endfor%}
 		</ul>
+
+		<h2>Their comments:</h2>
+		<ul>
+			{% for one_comm in one_user.comments.all%}
+			<li>{{one_comm.content}}</li>
+			{%endfor%}
+		</ul>
 	</body>
 </html>

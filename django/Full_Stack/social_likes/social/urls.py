@@ -12,5 +12,7 @@ urlpatterns = [
     path('profile/<int:id>', views.profile),
     path('edit/<int:id>', views.edit_mess),
     path('delete/<int:id>', views.delete_mess),
+    path('add_comment/<int:id>', views.add_comm),
+    path('like/<int:id>', views.add_like)
     
 ]

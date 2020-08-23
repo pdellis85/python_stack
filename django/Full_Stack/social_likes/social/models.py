@@ -42,6 +42,17 @@ class Wall_Message(models.Model):
     content = models.CharField(max_length=255)
     poster = models.ForeignKey(
         User, related_name="messages", on_delete=models.CASCADE)
+    likes = models.ManyToManyField(User, related_name="likes")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = MessageManager()
+
+class Comment(models.Model):
+    content = models.CharField(max_length=255)
+    poster = models.ForeignKey(
+        User, related_name="comments", on_delete=models.CASCADE)
+    message = models.ForeignKey(
+        Wall_Message, related_name="comments", on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+

@@ -116,3 +116,21 @@ def edit_mess(request, id):
 def delete_mess(request, id):
     Wall_Message.objects.get(id=id).delete()
     return redirect('/success')
+
+def add_comm(request, id):
+    # retreive user with id from session
+    poster = User.objects.get(id=request.session['user_id'])
+    # retrieve message using id in the url
+    mess = Wall_Message.objects.get(id=id)
+    # create a comment to the message
+    Comment.objects.create(content = request.POST['content'], poster=poster, message=mess)
+    return redirect('/success')
+
+def add_like(request, id):
+     # retreive user with id from session
+    user_liking = User.objects.get(id=request.session['user_id'])
+    # retrieve message using id in the url
+    liked_message = Wall_Message.objects.get(id=id)
+    # create a comment to the message
+    liked_message.likes.add(user_liking)
+    return redirect('/success')
