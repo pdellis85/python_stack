@@ -9,5 +9,8 @@ urlpatterns = [
     path('logout', views.logout),
 
     path('create_message', views.add_message),
+    path('profile/<int:id>', views.profile),
+    path('edit/<int:id>', views.edit_mess),
+    path('delete/<int:id>', views.delete_mess),
     
 ]

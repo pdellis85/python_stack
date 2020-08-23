@@ -13,7 +13,7 @@ def index(request):
 
 def success(request):
     context = {
-        'all_messages' : Wall_Message.objects.all()
+        'all_messages': Wall_Message.objects.all()
     }
     return render(request, 'success.html', context)
 
@@ -92,3 +92,27 @@ def add_message(request):
             content=request.POST['content'], poster=User.objects.get(id=request.session['user_id']))
         return redirect('/success')
     return redirect('/')
+
+
+def profile(request, id):
+    context = {
+        'one_user': User.objects.get(id=id)
+    }
+    return render(request, 'profile.html', context)
+
+def edit_mess(request, id):
+    # render a form where we can edit
+    one_mess = Wall_Message.objects.get(id=id)
+    if request.method == 'POST':
+        one_mess.content = request.POST['content']
+        one_mess.save()
+        return redirect(f'/profile/{str(one_mess.poster.id)}')
+    context = {
+        'edit_mess': one_mess
+    }
+    return render(request, 'edit.html', context)
+
+
+def delete_mess(request, id):
+    Wall_Message.objects.get(id=id).delete()
+    return redirect('/success')

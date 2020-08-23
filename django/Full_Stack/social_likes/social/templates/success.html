@@ -15,7 +15,7 @@
 				<h2>Post a Message:</h2>
 				<form action="/create_message" method="POST">
 					{%csrf_token%}
-					<input type="text" name="content" />
+					<textarea name="content" cols="50" rows="4"></textarea>
 					<input type="submit" value="Post" />
 				</form>
 
@@ -23,10 +23,14 @@
 					{% for one_mess in all_messages %}
 					<div class="message">
 						<h6>
-							{{one_mess.poster.first_name}} {{one_mess.poster.last_name}}
+							<a href="/profile/{{one_mess.poster.id}}">{{one_mess.poster.first_name}} {{one_mess.poster.last_name}}</a>
 						</h6>
 						<p>{{one_mess.content}}</p>
 						<p>{{one_mess.created_at}}</p>
+						{%if request.session.user_id == one_mess.poster.id%}
+						<p><a href="/edit/{{one_mess.id}}">Edit</a></p>
+						<p><a href="/delete/{{one_mess.id}}">Delete</a></p>
+						{% endif %}
 					</div>
 					{%endfor%}
 				</div>
