@@ -1,49 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wishing App</title>
-</head>
-<body>
-    <h1>Welcome! Sign in to make a wish!</h1>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>The Wishing App</title>
+		<style>
+			.form {
+				display: inline-block;
+				vertical-align: top;
+				border: 1px solid black;
+				padding: 5px;
+				margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Welcome! Sign in to make a wish!</h1>
 
-            {% if messages %}
-			<ul>
+		{% if messages %}
+		<ul>
 			{% for message in messages %}
 			<li>{{message}}</li>
 			{% endfor %}
-			</ul>
-			{% endif %}
-			
-			<div id="forms">
-				<div class="form">
-					<h4>Login</h4>
-					<form action="/login" method="POST">
-						{% csrf_token %}
-						<p>Email</p>
-						<input type="text" name="email" />
-						<p>Password</p>
-						<input type="text" name="password" />
-						<input class="submit" type="submit" value="Login" />
-					</form>
-				</div>
+		</ul>
+		{% endif %}
 
-				<div class="form">
-					<h4>Register</h4>
-					<form action="/register" method="POST">
-						{% csrf_token %}
-						<p>First Name</p>
-						<input type="text" name="f_name" />
-						<p>Last Name</p>
-						<input type="text" name="l_name" />
-						<p>Email</p>
-						<input type="text" name="email" />
-						<p>Password</p>
-						<input type="text" name="password" />
-						<p>Confirm Password</p>
-						<input type="text" name="conf_password" />
-						<input class="submit" type="submit" value="Register" />
-					</form>
-</body>
+		<div class="form">
+			<h4>Register</h4>
+			<form action="/register" method="POST">
+				{% csrf_token %}
+				First Name
+				<input type="text" name="f_name" />
+				<p></p>
+				Last Name
+				<input type="text" name="l_name" />
+				<p></p>
+				Email
+				<input type="text" name="email" />
+				<p></p>
+				Password
+				<input type="text" name="password" />
+				<p></p>
+				Confirm Password
+				<input type="text" name="conf_password" />
+				<p></p>
+				<input class="submit" type="submit" value="Register" />
+			</form>
+		</div>
+
+		<div class="form">
+			<h4>Login</h4>
+			<form action="/login" method="POST">
+				{% csrf_token %}
+				Email
+				<input type="text" name="email" />
+				<p></p>
+				Password
+				<input type="text" name="password" />
+				<p></p>
+				<input class="submit" type="submit" value="Login" />
+			</form>
+		</div>
+	</body>
 </html>

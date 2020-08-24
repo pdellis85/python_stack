@@ -1,17 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Wishing App</title>
-</head>
-<body>
-    <h2>Hello {{request.session.name}}!</h2>
-    <a href="/logout">Logout</a>
-    <input class="submit" type="submit" value="Make a wish!" />
-    <p></p>
-    <h3>Your wish list:</h3>
-    <p></p>
-    <h3>Granted wishes</h3>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>The Wishing App</title>
+		<style>
+			table {
+				font-family: arial, sans-serif;
+				border-collapse: collapse;
+				width: 70%;
+                border:2px solid black
+			}
+
+			td,
+			th {
+				border: 1px solid black;
+				text-align: left;
+				padding: 8px;
+			}
+
+			tr:nth-child(even) {
+				background-color: #dddddd;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Hello {{request.session.name}}!</h2>
+		<a href="/logout">Logout</a>
+		<input class="submit" type="submit" value="Make a wish!" />
+		<p></p>
+		<h3>Your Wish List:</h3>
+		<p></p>
+		<table>
+			<tr>
+				<th>Item</th>
+				<th>Date Added</th>
+				<th>Actions</th>
+			</tr>
+
+			<tr>
+				<td>pass</td>
+				<td>pass</td>
+				<td>
+					<a href="">Remove</a> | <a href="">Edit</a> | <a href="">Granted!!</a>
+				</td>
+			</tr>
+		</table>
+		<h3>Granted Wishes:</h3>
+		<table>
+			<tr>
+				<th>Item</th>
+				<th>Wisher</th>
+				<th>Date Added</th>
+				<th>Date Granted</th>
+				<th>Likes</th>
+				<th>Actions</th>
+			</tr>
+
+			<tr>
+				<td>pass</td>
+				<td>pass</td>
+				<td>pass</td>
+				<td>pass</td>
+				<td>pass</td>
+				<td><a href="">Like</a></td>
+			</tr>
+		</table>
+	</body>
 </html>
