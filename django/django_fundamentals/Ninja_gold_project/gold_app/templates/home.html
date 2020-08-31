@@ -4,71 +4,51 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Ninja Money</title>
-		<style>
-			#wrapper {
-				width: 900px;
-				margin: 0px auto;
-				font-family: sans-serif;
-			}
-
-			#gold {
-				background-color: gold;
-				color: red;
-			}
-
-			.form {
-				display: inline-block;
-			}
-		</style>
 	</head>
 	<body>
-		<div id="wrapper">
-			<div id="gold">
-				<h2>Current Gold:</h2>
-				<p>{{request.session.gold}}</p>
-			</div>
+		<h1>Ninja Gold</h1>
+		<a href="/reset"><button>Reset</button></a>
 
-			<div id="forms">
-				<div class="form">
-					<h3>Farm</h3>
-					<p>Earns 10-20 gold</p>
-					<form action="/process_money" method="POST">
-						{% csrf_token %}
-						<input type="hidden" name="farm" />
-						<input type="submit" value="Find Gold!" />
-					</form>
-				</div>
+		<h3>
+			Your Gold: <input type="text" disabled value="{{request.session.gold}}" />
+		</h3>
 
-				<div class="form">
-					<h3>Cave</h3>
-					<p>Earns 5-10 gold</p>
-					<form action="/process_money" method="POST">
-						{% csrf_token %}
-						<input type="hidden" name="cave" />
-						<input type="submit" value="Find Gold!" />
-					</form>
-				</div>
+		<h1>Farm</h1>
+		<p>(earns 10-20 golds)</p>
+		<form action="/gold" method="post">
+			{% csrf_token %}
+			<input type="hidden" name="building" value="farm" />
+			<button>Find Gold!</button>
+		</form>
 
-				<div class="form">
-					<h3>House</h3>
-					<p>Earns 2-5 gold</p>
-					<form action="/process_money" method="POST">
-						{% csrf_token %}
-						<input type="hidden" name="house" />
-						<input type="submit" value="Find Gold!" />
-					</form>
-				</div>
+		<h1>Cave</h1>
+		<p>(earns 5-10 golds)</p>
+		<form action="/gold" method="post">
+			{% csrf_token %}
+			<input type="hidden" name="building" value="cave" />
+			<button>Find Gold!</button>
+		</form>
 
-				<div class="form">
-					<h3>Casino</h3>
-					<p>Earn/Lose 0-50 gold</p>
-					<form action="/process_money" method="POST">
-						{% csrf_token %}
-						<input type="hidden" name="casino" />
-						<input type="submit" value="Find Gold!" />
-					</form>
-				</div>
-			</div>
-		</div>
+		<h1>House</h1>
+		<p>(earns 2-5 golds)</p>
+		<form action="/gold" method="post">
+			{% csrf_token %}
+			<input type="hidden" name="building" value="house" />
+			<button>Find Gold!</button>
+		</form>
+
+		<h1>Casino</h1>
+		<p>(earns/takes 0-50 golds)</p>
+		<form action="/gold" method="post">
+			{% csrf_token %}
+			<input type="hidden" name="building" value="casino" />
+			<button>Find Gold!</button>
+		</form>
+
+		<h2>Activities</h2>
+
+		{% for activity in request.session.activities reversed %}
+		<p class="{{ activity.result}}">{{ activity.message }}</p>
+		{% endfor %}
 	</body>
 </html>
