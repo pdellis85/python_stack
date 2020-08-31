@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>New Show</title>
+		<style>
+			#wrapper {
+				margin: 0px auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrapper">
+			<form action="create" method="POST">
+				{%csrf_token%}
+				<h1>Add a New Show</h1>
+				<p></p>
+				<h3>Title</h3>
+				<p></p>
+				<input type="text" name="title" id="title" />
+				<h3>Network</h3>
+				<p></p>
+				<input type="text" name="network" id="network" />
+				<h3>Release Date</h3>
+				<p></p>
+				<input type="date" name="release_date" id="release_date" />
+				<h3>Description</h3>
+				<p></p>
+				<textarea rows="4" cols="50" name="description" id="description">
+				</textarea>
+				<p></p>
+				<input type="submit" value="Create" />
+			</form>
+		</div>
+	</body>
+</html>
