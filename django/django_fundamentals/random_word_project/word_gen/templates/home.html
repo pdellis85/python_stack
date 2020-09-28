@@ -6,10 +6,9 @@
 		<title>Document</title>
 	</head>
 	<body>
-		<h1>Random Word (attempt #{{request.session.count}}) 
-			<h1>{{request.session.word}}</h1>
-		<a href="/random_word">Generate</a>
+		<h2>Random Word (attempt # [[add attempt number]])</h2>
+		<input type="text" placeholder="add code" />
 		<p></p>
-		<a href="/reset">Reset Count</a>
+		<input type="submit" value="Generate" />
 	</body>
 </html>
